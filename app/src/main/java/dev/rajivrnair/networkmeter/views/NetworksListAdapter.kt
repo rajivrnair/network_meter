@@ -1,14 +1,13 @@
-package org.indiemakers.networkmeter.views
+package dev.rajivrnair.networkmeter.views
 
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.indiemakers.networkmeter.R
-import org.indiemakers.networkmeter.models.Network
-import org.indiemakers.networkmeter.models.NetworkType
-import org.indiemakers.networkmeter.models.NetworkType.GSM
-import org.indiemakers.networkmeter.models.NetworkType.WIFI
+import dev.rajivrnair.networkmeter.R
+import dev.rajivrnair.networkmeter.models.Network
+import dev.rajivrnair.networkmeter.models.NetworkType
+import dev.rajivrnair.networkmeter.models.NetworkType.*
 
 class NetworksListAdapter(private var dataSet: List<Network>) :
     RecyclerView.Adapter<NetworkViewHolder>() {
@@ -22,7 +21,7 @@ class NetworksListAdapter(private var dataSet: List<Network>) :
         val network = dataSet[position]
         viewHolder.name.text = network.name
         viewHolder.type.setImageDrawable(getNetworkType(network.type, viewHolder))
-        viewHolder.strength.text = network.signalStrength.toString()
+        viewHolder.strength.text = network.signalStrength
 
         viewHolder.quality.setImageDrawable(getNetworkQualityImage(network.level, viewHolder))
         viewHolder.quality.setColorFilter(getNetworkQualityColour(network.level, viewHolder))
@@ -53,7 +52,8 @@ class NetworksListAdapter(private var dataSet: List<Network>) :
     private fun getNetworkType(type: NetworkType, viewHolder: NetworkViewHolder): Drawable? {
         return when(type) {
             WIFI -> viewHolder.typeWifi
-            GSM -> viewHolder.typeGsm
+            GSM -> viewHolder.typeMobile
+            LTE -> viewHolder.typeMobile
         }
     }
 

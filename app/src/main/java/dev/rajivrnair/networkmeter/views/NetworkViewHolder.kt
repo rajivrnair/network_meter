@@ -1,4 +1,4 @@
-package org.indiemakers.networkmeter.views
+package dev.rajivrnair.networkmeter.views
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import org.indiemakers.networkmeter.R
+import dev.rajivrnair.networkmeter.R
 
 class NetworkViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val type: ImageView = view.findViewById(R.id.network_type)
@@ -29,5 +29,5 @@ class NetworkViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val imgCrap: Drawable? = ContextCompat.getDrawable(context, R.drawable.baseline_sick_black_24)
 
     val typeWifi: Drawable? = ContextCompat.getDrawable(context, R.drawable.baseline_wifi_black_24)
-    val typeGsm: Drawable? = ContextCompat.getDrawable(context, R.drawable.baseline_signal_cellular_alt_black_24)
+    val typeMobile: Drawable? = ContextCompat.getDrawable(context, R.drawable.baseline_signal_cellular_alt_black_24)
 }

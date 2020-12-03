@@ -1,4 +1,4 @@
-package org.indiemakers.networkmeter
+package dev.rajivrnair.networkmeter
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

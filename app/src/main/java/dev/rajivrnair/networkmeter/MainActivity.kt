@@ -1,19 +1,20 @@
-package org.indiemakers.networkmeter
+package dev.rajivrnair.networkmeter
 
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
-import org.indiemakers.networkmeter.databinding.ActivityMainBinding
-import org.indiemakers.networkmeter.models.Network
-import org.indiemakers.networkmeter.services.NetworkMonitor
-import org.indiemakers.networkmeter.views.NetworksListAdapter
+import dev.rajivrnair.networkmeter.databinding.ActivityMainBinding
+import dev.rajivrnair.networkmeter.models.Network
+import dev.rajivrnair.networkmeter.services.NetworkMonitor
+import dev.rajivrnair.networkmeter.views.NetworksListAdapter
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -97,8 +98,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showNetworks(showWifi: Boolean, showGsm: Boolean) {
-        mNetworks = mService.getNetworks(showWifi, showGsm)
+        mNetworks = mService.getNetworks(showWifi, showGsm, applicationContext)
         mAdapter.updateList(mNetworks)
+        if(mNetworks.isEmpty()) {
+            Toast.makeText(this, "No networks found!", Toast.LENGTH_SHORT).show()
+            return
+        }
         binding.scanAnimation.visibility = GONE
     }
 }
