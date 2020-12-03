@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Signals</string>
+    <string name="filter_wifi">Wifi</string>
+    <string name="filter_gsm">gsm</string>
+    <string name="filter_about">about</string>
+    <string name="about_title">About</string>
+    <string name="code_by"><b>Code ©️ 2020 Indie Makers:</b> https://github.com/IndieMakers</string>
+    <string name="animation_by"><b>Animation from Lottie Images:</b> https://lottiefiles.com/6567-scanning-nearby</string>
+</resources>
