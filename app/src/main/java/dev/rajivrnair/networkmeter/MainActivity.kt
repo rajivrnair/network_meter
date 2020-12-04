@@ -41,13 +41,11 @@ class MainActivity : AppCompatActivity() {
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_filter_wifi -> {
-                    binding.scanAnimation.visibility = VISIBLE
                     showNetworks(showWifi = true, showGsm = false)
                     true
                 }
 
                 R.id.action_filter_gsm -> {
-                    binding.scanAnimation.visibility = VISIBLE
                     showNetworks(showWifi = false, showGsm = true)
                     true
                 }
@@ -64,7 +62,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.action_rescan -> {
-                    binding.scanAnimation.visibility = VISIBLE
                     showNetworks(showWifi = true, showGsm = true)
                     true
                 }
@@ -86,18 +83,24 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        object : CountDownTimer(3000L, 1000L) {
+        showNetworks(showWifi = true, showGsm = true)
+    }
+
+    private fun showNetworks(showWifi: Boolean, showGsm: Boolean) {
+        binding.scanAnimation.visibility = VISIBLE
+        mAdapter.updateList(listOf())
+        object : CountDownTimer(2000L, 1000L) {
             override fun onTick(millisUntilFinished: Long) {
                 // do nothing
             }
 
             override fun onFinish() {
-                showNetworks(showWifi = true, showGsm = true)
+                fetchNetworks(showWifi, showGsm)
             }
         }.start()
     }
 
-    private fun showNetworks(showWifi: Boolean, showGsm: Boolean) {
+    private fun fetchNetworks(showWifi: Boolean, showGsm: Boolean) {
         mNetworks = mService.getNetworks(showWifi, showGsm, applicationContext)
         mAdapter.updateList(mNetworks)
         if(mNetworks.isEmpty()) {
